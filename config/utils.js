@@ -84,19 +84,20 @@ exports.getModulePath = (moduleName) => {
 
 //获取子模块的入口文件，如{test: modules/views/test/main.js, test1: modules/views/test1/main.js}
 exports.getEntries = () => {
-  var entries = null
+  var entries = {}
+  var modules = process.argv[2].split(':')
   if(process.env.NODE_ENV == 'development') {
     entries = glob.sync('./modules/src/**/main.js')
       .reduce(function (entries, entry) {
         console.log(entry)
         // 各模块入口文件地址，eg: ./modules/src/test/main.js
         let moduleName = entry.match(/src\/(.*)\/main.js/)[1]
-        entries[moduleName] = entry
+        if(modules.includes(moduleName)) {
+          entries[moduleName] = entry
+        }
         return entries
       }, {})
   } else {
-    entries = {}
-    var modules = process.argv[2].split(':')
     modules.forEach(moduleName => {
       entries[moduleName] = exports.getModulePath(moduleName) + '/main.js'
     })

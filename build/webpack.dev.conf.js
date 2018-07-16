@@ -36,7 +36,8 @@ var webpackConfig = merge(baseWebpackConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
-      'NODE_ENV': 'development'
+      'assetsPublicPath': JSON.stringify(config.dev.assetsPublicPath),
+      'assetsSubDirectory': JSON.stringify(config.dev.assetsSubDirectory)
     }),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.HotModuleReplacementPlugin(),
@@ -52,7 +53,7 @@ var webpackConfig = merge(baseWebpackConfig, {
 })
 
 let entries = utils.getEntries()
-console.log(JSON.stringify(entries))
+console.log('entries', JSON.stringify(entries))
 Object.keys(entries)
   .map(function (entry, i, pageNames) {
     var plugin = new HtmlWebpackPlugin({
