@@ -1,6 +1,6 @@
 # vue_modules
 
-> 迅雷U享版
+> webpack vue project in which modules are seperated
 
 ## Build Setup
 
