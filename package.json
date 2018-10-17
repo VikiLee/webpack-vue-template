@@ -2,7 +2,7 @@
   "name": "test",
   "version": "1.0.0",
   "description": "test",
-  "author": "liweiji <l874279721@qq.com>",
+  "author": "liweiji <874279721@qq.com>",
   "private": true,
   "scripts": {
     "create": "node command/create.js",
